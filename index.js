@@ -11,4 +11,7 @@ app.use(cors())
 app.use(require('./routes/register.route'))
 app.use(require('./routes/login.route'))
 mongoose.connect('mongodb+srv://admin:admin@cluster0.ewz604a.mongodb.net/eWalletDB')
+app.get('/',(req,res)=>{
+    res.json({message:"hello from api"})
+})
 app.listen(port, () => console.log(`Example app listening  port ${port}!`))
