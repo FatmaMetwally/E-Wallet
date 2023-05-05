@@ -26,4 +26,7 @@ else
     res.json({message:"user dosn't exist"})
 }
 })
+app.get('/test',(req,res)=>{
+    res.json({message:"hello from login"})
+})
 module.exports=app
