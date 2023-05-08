@@ -12,13 +12,15 @@ app.post('/register',async (req,res)=>{
      const  user= await userModel.findOne({phone})
         if (user){
      
-                    res.json({message:"phone already exist"})
+         res.status(409).json({message:"phone already exist"})
                  }
         else
              { 
-                //the gender valid values
+                
                 const validGenders = ['male', 'female'];
-
+                //the gender valid values
+                // Check that the name consists of only alphabetic characters and spaces
+               // nameRegex = /^[a-zA-Z ]+$/
                 // Check if the gender is one of the valid values
                  // birth string should match YYYY-MM-DD
                  // Check that the name consists of one or more words, where each word contains only alphabetic characters
@@ -30,12 +32,12 @@ app.post('/register',async (req,res)=>{
                       // Store hash in your password DB.
                             bcrypt.hash(password, 7,  async function(err, hash) {
          
-                            await  userModel.insertMany({name,phone,NID,age,address,gender,password: hash})
-                            res.json({message:"inserted into DB"})
+                            await  userModel.insertMany({name,phone,NID,age,address,gender,password: hash,balance:100})
+                            res.status(200).res.json({message:"inserted into DB"})
                                  })
                                                                      }
                   else {
-                         res.json({message:"invalid data"})
+                     res.status(400).json({message:"invalid data"})
                        }
            
     
