@@ -27,14 +27,16 @@ function authenticate(req, res, next) {
   
       const { user } = payload;
       const person = await userModel.findById(user);
-        console.log(person);
       if (!person) {
         return res.status(401).json({ message: 'Invalid token person' });
       }
      req.person=person
       next();
-    });
+    })
+    
+   
   }
   
   
-  module.exports=app
+  
+  module.exports=authenticate
